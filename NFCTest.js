@@ -21,7 +21,7 @@ const scan = async () => {
                 const text = textDecoder.decode(data)
                 console.log(`Text: ${text}`)
             }
-            WriteLog(`Text: ${text}`);
+            WriteLog(`${data}, ${encoding}, ${recordType}`);
         })
     } catch (error) {
         // Scan起動失敗
