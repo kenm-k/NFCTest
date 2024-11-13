@@ -25,6 +25,7 @@ const scan = async () => {
 
 function ScanNFC()
 {
+    WriteLog("Pushed!");
     scan();
 }
 
