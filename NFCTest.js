@@ -6,6 +6,7 @@ const scan = async () => {
         // Scanは起動しているが、NFCタグからデータが読み込めなかった
         reader.addEventListener('error', (event) => {
             //console.log(error)
+            WriteLog("ああ、これエラーですわ");
             WriteLog(error);
         })
 
@@ -18,12 +19,13 @@ const scan = async () => {
                 const textDecoder = new TextDecoder(encoding)
                 const text = textDecoder.decode(data)
                 console.log(`Text: ${text}`)
-              }
+            }
             WriteLog(`Text: ${text}`);
         })
     } catch (error) {
         // Scan起動失敗
         //console.error(error)
+        WriteLog("ああ、これエラーですわ")
         WriteLog(error);
     }
 }
