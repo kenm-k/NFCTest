@@ -57,7 +57,7 @@
 			const detectionList = await detector.detect(vid);
 			console.log(detectionList);
 
-			if (!confirm(`${detectionList}でお間違いないですか?`))
+			if (!confirm(`${detectionList.rawValue}でお間違いないですか?`))
 			{
 				vid.cameraStop();
 				vid.startCamera();
