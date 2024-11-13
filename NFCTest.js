@@ -14,13 +14,8 @@ const scan = async () => {
         reader.addEventListener('reading', ({ serialNumber, message }) => {
             const record = message.records[0]
             const { data, encoding, recordType } = record
-            WriteLog(toString(serialNumber));
             WriteLog("読み込めはしたよ")
-            WriteLog(`${toString(data)}, ${toString(encoding)}, ${toString(recordType)}`);
-            // recordTypeごとにdecode処理を実行する
-                const textDecoder = new TextDecoder(encoding)
-                const text = textDecoder.decode(data)
-                console.log(`Text: ${text}`)
+            WriteLog(data.GetUint32());
         })
     } catch (error) {
         // Scan起動失敗
