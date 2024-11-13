@@ -12,9 +12,9 @@ const scan = async () => {
 
         // データを読み込んだ
         reader.addEventListener('reading', ({ serialNumber, message }) => {
-            const record = message.records[0];
             WriteLog("読み込めはしたよ");
-            console.log(record.data);
+            for (let i = 0; i < message.records.length; i++)
+                console.log(message.records[i].data);
         })
     } catch (error) {
         // Scan起動失敗
