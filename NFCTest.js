@@ -18,11 +18,9 @@ const scan = async () => {
             WriteLog("読み込めはしたよ")
             WriteLog(`${toString(data)}, ${toString(encoding)}, ${toString(recordType)}`);
             // recordTypeごとにdecode処理を実行する
-            if (recordType === 'text') {
                 const textDecoder = new TextDecoder(encoding)
                 const text = textDecoder.decode(data)
                 console.log(`Text: ${text}`)
-            }
         })
     } catch (error) {
         // Scan起動失敗
