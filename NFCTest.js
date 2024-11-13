@@ -13,9 +13,7 @@ const scan = async () => {
         // データを読み込んだ
         reader.addEventListener('reading', ({ serialNumber, message }) => {
             WriteLog("読み込めはしたよ");
-            console.log(message.records[0].data);
-            console.log(serialNumber);
-            WriteLog(message.records[0].data ?? "nullです");
+            WriteLog(`あなたの独自UIDは、${serialNumber}`);
         })
     } catch (error) {
         // Scan起動失敗
