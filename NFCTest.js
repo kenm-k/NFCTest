@@ -15,7 +15,7 @@ const scan = async () => {
             const record = message.records[0]
             const { data, encoding, recordType } = record
             WriteLog("読み込めはしたよ")
-            WriteLog(data.GetUint32());
+            WriteLog(data.getUint32(0));
         })
     } catch (error) {
         // Scan起動失敗
