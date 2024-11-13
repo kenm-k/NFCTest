@@ -14,12 +14,7 @@ const scan = async () => {
             const record = message.records[0]
             const { data, encoding, recordType } = record
             // recordTypeごとにdecode処理を実行する
-            if (recordType === 'text') {
-                const textDecoder = new TextDecoder(encoding)
-                const text = textDecoder.decode(data)
-                //console.log(`Text: ${text}`)
-                WriteLog(`Text: ${text}`);
-            }
+            WriteLog(data);
         })
     } catch (error) {
         // Scan起動失敗
