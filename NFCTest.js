@@ -14,6 +14,7 @@ const scan = async () => {
         reader.addEventListener('reading', ({ serialNumber, message }) => {
             WriteLog("読み込めはしたよ");
             console.log(message.records[0].data);
+            console.log(serialNumber);
             WriteLog(message.records[0].data ?? "nullです");
         })
     } catch (error) {
