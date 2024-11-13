@@ -14,9 +14,9 @@ const scan = async () => {
         reader.addEventListener('reading', ({ serialNumber, message }) => {
             const record = message.records[0]
             const { data, encoding, recordType } = record
-            WriteLog(serialNumber);
+            WriteLog(toString(serialNumber));
             WriteLog("読み込めはしたよ")
-            WriteLog(`${data}, ${encoding}, ${recordType}`);
+            WriteLog(`${toString(data)}, ${toString(encoding)}, ${toString(recordType)}`);
             // recordTypeごとにdecode処理を実行する
             if (recordType === 'text') {
                 const textDecoder = new TextDecoder(encoding)
