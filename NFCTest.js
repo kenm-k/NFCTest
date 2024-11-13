@@ -31,6 +31,6 @@ function ScanNFC()
 
 function WriteLog(text)
 {
-    let log = document.getElementById("log");
+    let log = document.querySelector("#log");
     log.textContent += text + "\n";
 }
