@@ -59,8 +59,8 @@
 
 			if (!confirm(`${detectionList["rawValue"]}でお間違いないですか?`))
 			{
-				vid.cameraStop();
-				vid.startCamera();
+				cameraStop();
+				startCamera();
 				return;
 			}
 		}
@@ -81,8 +81,8 @@
 			<div class="modal-2__content-wrap">
 				<label for="modal-2__close" class="modal-2__close-label" onclick="cameraStop();">×</label>
 				<div class="modal-2__content">
+					バーコードを写してください
 					<div id="innerModal" style="margin: 10px;">
-						バーコードを写してください
 					</div>
 					<br>
 					<button style="width: 300px; height: 30px;" onclick="cameraPause();">読み込む</button>
