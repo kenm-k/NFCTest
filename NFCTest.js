@@ -39,17 +39,17 @@ const scan = async () => {
     }
 }
 
-function ScanNFC() {
+window.ScanNFC = () => {
     WriteLog("Pushed!");
     scan();
 }
 
-function WriteLog(text) {
+window.WriteLog = (text) => {
     let log = document.querySelector("#log");
     log.textContent += text + "\n";
 }
 
-function WriteP(text) {
+window.WriteP = (text) => {
     let log = document.querySelector("#plog");
     log.textContent = text;
 }
@@ -66,6 +66,8 @@ function Matching(id) {
 
 let vid;
 let cams;
+
+window.startCamera = () => startCamera();
 
 async function startCamera() {
     const cameraStream = await navigator.mediaDevices.getUserMedia({
@@ -94,7 +96,7 @@ async function startCamera() {
     cameraCheckStart();
 }
 
-function cameraStop() {
+window.cameraStop = () => {
     vid.remove();
     cams.getTracks()[0].stop();
 }
@@ -126,13 +128,13 @@ async function cameraCheckStart() {
     }, 500);
 }
 
-function OpenModal() {
+window.OpenModal = () => {
     let open = document.getElementById("modal-2__open");
     open.checked = true;
     startCamera();
 }
 
-function CloseModal() {
+window.CloseModal = () => {
     let open = document.getElementById("modal-2__open");
     open.checked = false;
     cameraStop();
