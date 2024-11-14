@@ -57,6 +57,7 @@ window.WriteP = (text) => {
 }
 
 async function Matching(id) {
+    WriteP("参照中...");
     var db = getFirestore(app);
     var userRef = collection(db, COLLECTION);
     const q = query(userRef, where("UID", "==", id));
@@ -72,9 +73,10 @@ async function Matching(id) {
     console.log(tempDoc.data());
 
     if (tempDoc.exists()) {
-        WriteP(`あなたの学籍番号：${tempDoc.data()}`);
+        WriteP(`あなたの学籍番号：${tempDoc.data().studentID}`);
     }
     else {
+        WriteP("見つかりませんでした、登録してください!");
         OpenModal();
     }
 }
