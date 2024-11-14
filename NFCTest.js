@@ -1,5 +1,5 @@
 import {app} from "./firebaseApp.js"
-import { getFirestore, doc, updateDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js"
+import { getFirestore, doc, updateDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"
 
 let userID;
 function GetUID() {
