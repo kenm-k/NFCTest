@@ -165,3 +165,7 @@ async function db_get(collection, document)
 
     console.log("document data : ", docSnap.data());
 }
+
+window.db_get = (collection, document) => {
+    db_get(collection, document);
+}
