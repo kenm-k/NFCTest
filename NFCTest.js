@@ -69,7 +69,7 @@ async function Matching(id) {
         tempDoc = doc;
     });
 
-    if (docSnap.exists()) {
+    if (tempDoc.exists()) {
         WriteP(`あなたの学籍番号：${tempDoc.data()}`);
     }
     else {
