@@ -118,10 +118,13 @@ async function cameraCheckStart() {
         for (const detected of detectionList) {
             if (confirm(`${detected.rawValue}でお間違いないですか?`)) {
                 //処理
+                db_save("users", detected.rawValue, GetUID(), detected.rawValue);
+
                 CloseModal();
                 return;
             }
-            else {
+            else
+            {
                 continue;
             }
         }
