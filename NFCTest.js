@@ -1,5 +1,7 @@
 import {app} from "./firebaseApp.js"
-import { getFirestore, doc, updateDoc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"
+import { getFirestore, doc, updateDoc, setDoc, getDoc, query, where } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"
+
+const COLLECTION = "users";
 
 let userID;
 function GetUID() {
@@ -54,10 +56,13 @@ window.WriteP = (text) => {
     log.textContent = text;
 }
 
-function Matching(id) {
-    let found = false;
-    if (found) {
-
+async function Matching(id) {
+    var db = getFirestore(app);
+    var userRef = doc(db, COLLECTION, document);
+    const q = query(userRef, where("UID", "==", id));
+    if (q.length > 0) {
+        for (let data of q)
+            console.log(data);
     }
     else {
         OpenModal();
