@@ -141,7 +141,7 @@ window.CloseModal = () => {
 }
 
 window.testSending = () => {
-    db_save("users", "test", "UID", "test");
+    db_save("users", "HYzT0dALajGL3LWUO2rN", "UID", "test");
 }
 
 async function db_save(collection,document,key,value) {
