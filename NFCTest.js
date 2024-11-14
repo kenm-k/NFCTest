@@ -64,7 +64,7 @@ async function Matching(id) {
 
     const querySnap = await getDocs(q);
 
-    let tempDoc;
+    let tempDoc = querySnap[0];
 
     querySnap.forEach(doc => {
         tempDoc = doc;
