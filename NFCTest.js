@@ -146,9 +146,9 @@ window.testSending = () => {
 
 async function db_save(collection,document,key,value) {
     var db = getFirestore(app);
-    var userRef = doc(db, collection, document);
     key = String(key);
-    await updateDoc(userRef, {
-        [key]:value
+    await setDoc(doc(db, collection, document),{
+        UID : key,
+        studentID : value
     });
 }
