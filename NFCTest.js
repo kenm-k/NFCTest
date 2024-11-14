@@ -1,5 +1,5 @@
 import {app} from "./firebaseApp.js"
-import { getFirestore, doc, updateDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"
+import { getFirestore, doc, updateDoc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"
 
 let userID;
 function GetUID() {
@@ -155,4 +155,13 @@ async function db_save(collection,document,UID,studentID) {
         UID: UID,
         studentID: studentID
     });
+}
+
+async function db_get(collection, document)
+{
+    var db = getFirestore(app);
+    var userRef = doc(db, collection, document);
+    const docSnap = await getDoc(userRef);
+
+    console.log("document data : ", docSnap.data());
 }
