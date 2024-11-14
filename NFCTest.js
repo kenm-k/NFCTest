@@ -121,6 +121,7 @@ async function cameraCheckStart() {
                 db_save("users", detected.rawValue, GetUID(), detected.rawValue);
 
                 CloseModal();
+                WriteP("送信完了しました!");
                 return;
             }
             else
