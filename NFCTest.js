@@ -16,15 +16,17 @@ const scan = async () => {
             WriteP(`おっと、なにか不具合のようです：${error}`);
         })
 
-        // データを読み込んだ
-        reader.addEventListener('reading', ({ serialNumber, message }) => {
+        const readEvent = ({ serialNumber, message }) => {
             WriteLog("読み込めはしたよ");
             WriteLog(`あなたの独自UIDは、${serialNumber}`);
             WriteP(`あなたのUIDは、${serialNumber}`);
             userID = serialNumber;
             //参照処理
             Matching(userID);
-        })
+        };
+
+        // データを読み込んだ
+        reader.addEventListener('reading', readEvent, {once: true})
     } catch (error) {
         // Scan起動失敗
         //console.error(error)
