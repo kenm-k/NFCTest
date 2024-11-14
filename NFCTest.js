@@ -63,10 +63,14 @@ async function Matching(id) {
 
     const querySnap = await getDocs(q);
 
-    console.log("document data : ", querySnap[0].data()["studentID"]);
+    let tempDoc;
+
+    querySnap.forEach(doc => {
+        tempDoc = doc;
+    });
 
     if (docSnap.exists()) {
-        WriteP(`あなたの学籍番号：${querySnap[0].data()["studentID"]}`);
+        WriteP(`あなたの学籍番号：${tempDoc.data()}`);
     }
     else {
         OpenModal();
