@@ -64,13 +64,13 @@ async function Matching(id) {
 
     const querySnap = await getDocs(q);
 
-    let tempDoc = querySnap[0];
+    let tempDoc = null;
 
     querySnap.forEach(doc => {
         tempDoc = doc;
     });
 
-    if (tempDoc.exists()) {
+    if (tempDoc != null) {
         WriteP(`あなたの学籍番号：${tempDoc.data().studentID}`);
     }
     else {
