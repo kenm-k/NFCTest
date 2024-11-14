@@ -140,15 +140,16 @@ window.CloseModal = () => {
     cameraStop();
 }
 
-window.db_save = (collection, document, key, value) => {
-    db_save(collection, document, key, value);
+window.db_save = (collection, document, UID, studentID) => {
+    db_save(collection, document, UID, studentID);
 }
 
-async function db_save(collection,document,key,value) {
+async function db_save(collection,document,UID,studentID) {
     var db = getFirestore(app);
     var userRef = doc(db, collection, document);
     key = String(key);
-    await updateDoc(userRef, {
-        [key]:value
+    await setDoc(userRef, {
+        UID: UID,
+        studentID: studentID
     });
 }
