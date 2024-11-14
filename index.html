@@ -24,7 +24,7 @@
 			justify-content: center;
 			align-items: center;
 			width: 250px;
-			margin:20px auto;
+			margin: 20px auto;
 			padding: .8em 2em;
 			border: none;
 			border-radius: 5px;
@@ -43,6 +43,8 @@
 		}
 	</style>
 	<script src="NFCTest.js"></script>
+	<script src="DB.js"></script>
+
 </head>
 
 <body>
@@ -57,28 +59,65 @@
 		<textarea id="log" style="width: 75%; height: 500px; display: none;"></textarea>
 	</div>
 	<div id="modal" class="modal">
-	<div class="modal-2__wrap" style="text-align: center;">
-		<input type="radio" id="modal-2__open" class="modal-2__open-input" name="modal-2__trigger" /
-			onclick="startCamera();" style="visibility: hidden;">
-		<label for="modal-2__open" class="modal-2__open-label" style="visibility: hidden;">モーダルを開く</label>
-		<input type="radio" id="modal-2__close" name="modal-2__trigger" />
-		<div class="modal-2">
-			<div class="modal-2__content-wrap">
-				<label for="modal-2__close" class="modal-2__close-label" onclick="cameraStop();">×</label>
-				<div class="modal-2__content">
-					ユーザを登録します。バーコードを写してください。
-					<div id="innerModal" style="margin: 10px;">
+		<div class="modal-2__wrap" style="text-align: center;">
+			<input type="radio" id="modal-2__open" class="modal-2__open-input" name="modal-2__trigger" /
+				onclick="startCamera();" style="visibility: hidden;">
+			<label for="modal-2__open" class="modal-2__open-label" style="visibility: hidden;">モーダルを開く</label>
+			<input type="radio" id="modal-2__close" name="modal-2__trigger" />
+			<div class="modal-2">
+				<div class="modal-2__content-wrap">
+					<label for="modal-2__close" class="modal-2__close-label" onclick="cameraStop();">×</label>
+					<div class="modal-2__content">
+						ユーザを登録します。バーコードを写してください。
+						<div id="innerModal" style="margin: 10px;">
+						</div>
+						<br>
+						<!-- <button onclick="cameraPause();">読み込む</button> -->
 					</div>
-					<br>
-					<!-- <button onclick="cameraPause();">読み込む</button> -->
 				</div>
+				<label for="modal-2__close">
+					<div class="modal-2__background" onclick="cameraStop();"></div>
+				</label>
 			</div>
-			<label for="modal-2__close">
-				<div class="modal-2__background" onclick="cameraStop();"></div>
-			</label>
 		</div>
 	</div>
-	</div>
+
+	<script type="module">
+		// Import the functions you need from the SDKs you need
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+		import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
+		// TODO: Add SDKs for Firebase products that you want to use
+		// https://firebase.google.com/docs/web/setup#available-libraries
+
+		// Your web app's Firebase configuration
+		// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+		const firebaseConfig = {
+			apiKey: "AIzaSyDDj3nZXx_c_BjD84X7sxBd-NXX5X7FrTM",
+			authDomain: "acdata-a61d3.firebaseapp.com",
+			projectId: "acdata-a61d3",
+			storageBucket: "acdata-a61d3.firebasestorage.app",
+			messagingSenderId: "512434040764",
+			appId: "1:512434040764:web:b0342bdbeaf357cfb645b9",
+			measurementId: "G-X70VW3H6XS"
+		};
+
+		// Initialize Firebase
+		const app = initializeApp(firebaseConfig);
+		const analytics = getAnalytics(app);
+
+		import { collection, addDoc } from "firebase/firestore";
+		async function AddData(UID, studentID) {
+			try {
+				const docRef = await addDoc(collection(db, "users"), {
+					UID: UID,
+					studentID: studentID
+				});
+				console.log("Document written with ID: ", docRef.id);
+			} catch (e) {
+				console.error("Error adding document: ", e);
+			}
+		}
+	</script>
 
 </body>
 
