@@ -140,6 +140,10 @@ window.CloseModal = () => {
     cameraStop();
 }
 
+window.sendTest = () => {
+    db_save("users", "test", "UID", "test");
+}
+
 async function db_save(collection,document,key,value) {
     var db = getFirestore(app);
     var userRef = doc(db, collection, document);
