@@ -140,7 +140,7 @@ window.CloseModal = () => {
     cameraStop();
 }
 
-window.sendTest = () => {
+window.testSending = () => {
     db_save("users", "test", "UID", "test");
 }
 
