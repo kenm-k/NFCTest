@@ -58,11 +58,15 @@ window.WriteP = (text) => {
 
 async function Matching(id) {
     var db = getFirestore(app);
-    var userRef = doc(db, COLLECTION, document);
+    var userRef = collection(db, COLLECTION);
     const q = query(userRef, where("UID", "==", id));
-    if (q.length > 0) {
-        for (let data of q)
-            console.log(data);
+
+    const querySnap = await getDocs(q);
+
+    console.log("document data : ", querySnap[0].data()["studentID"]);
+
+    if (docSnap.exists()) {
+        WriteP(`あなたの学籍番号：${querySnap[0].data()["studentID"]}`);
     }
     else {
         OpenModal();
