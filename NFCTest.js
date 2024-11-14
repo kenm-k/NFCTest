@@ -108,7 +108,7 @@ async function cameraCheckStart() {
     const detector = new BarcodeDetector();
 
     cameraChecking = setInterval(async () => {
-        const detectionList = await detector.detect(video);
+        const detectionList = await detector.detect(vid);
 
         for (const detected of detectionList) {
             if (confirm(`${detected}でお間違いないですか?`)) {
