@@ -81,6 +81,7 @@ async function Matching(id) {
 
 let vid;
 let cams;
+let scanFlag = false;
 
 window.startCamera = () => startCamera();
 
@@ -109,6 +110,7 @@ async function startCamera() {
 
     cams = cameraStream;
     cameraCheckStart();
+    scanFlag = false;
 }
 
 window.cameraStop = () => {
@@ -131,7 +133,8 @@ async function cameraCheckStart() {
         const detectionList = await detector.detect(vid);
 
         for (const detected of detectionList) {
-            if (confirm(`${detected.rawValue}でお間違いないですか?`)) {
+            if (!scanFlag && confirm(`${detected.rawValue}でお間違いないですか?`)) {
+                scanFlag = true;
                 //処理
                 db_save("users", detected.rawValue, GetUID(), detected.rawValue);
 
