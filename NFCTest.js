@@ -1,3 +1,6 @@
+import {app} from "./firebaseApp.js"
+import { getFirestore, doc, updateDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js"
+
 let userID;
 function GetUID() {
     return userID;
@@ -13,7 +16,7 @@ const scan = async () => {
             //console.log(error)
             WriteLog("ああ、これエラーですわ");
             WriteLog(error);
-            WriteP(`おっと、なにか不具合のようです：${error}`);
+            WriteP(`おっと、なにか不具合のようです：\n${error}`);
         })
 
         const readEvent = ({ serialNumber, message }) => {
@@ -32,7 +35,7 @@ const scan = async () => {
         //console.error(error)
         WriteLog("ああ、これエラーですわ")
         WriteLog(error);
-        WriteP(`おっと、なにか不具合のようです：${error}`);
+        WriteP(`おっと、なにか不具合のようです：\n${error}`);
     }
 }
 
@@ -133,4 +136,13 @@ function CloseModal() {
     let open = document.getElementById("modal-2__open");
     open.checked = false;
     cameraStop();
+}
+
+async function db_save(collection,document,key,value) {
+    var db = getFirestore(app);
+    var userRef = doc(db, collection, document);
+    key = String(key);
+    await updateDoc(userRef, {
+        [key]:value
+    });
 }
