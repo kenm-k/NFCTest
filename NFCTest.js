@@ -70,8 +70,6 @@ async function Matching(id) {
         tempDoc = doc;
     });
 
-    console.log(tempDoc.data());
-
     if (tempDoc.exists()) {
         WriteP(`あなたの学籍番号：${tempDoc.data().studentID}`);
     }
