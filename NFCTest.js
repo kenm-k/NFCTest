@@ -141,7 +141,7 @@ window.CloseModal = () => {
 }
 
 window.db_save = (collection, document, key, value) => {
-    db_save("users", "test", "UID", "test");
+    db_save(collection, document, key, value);
 }
 
 async function db_save(collection,document,key,value) {
