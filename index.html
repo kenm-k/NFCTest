@@ -16,7 +16,7 @@
 			color: white;
 			padding: 5px;
 			font-size: 24pt;
-			background-color: red;
+			background-color: rgb(0, 162, 255);
 		}
 
 		button {
@@ -46,7 +46,10 @@
 </head>
 
 <body>
-	<div style="text-align: center; margin: 20%;">
+	<br>
+	<div style="text-align: center;">
+		<h1>NFC読み取りシステム</h1>
+		<br>
 		<button onclick="WriteP('学生証を近づけてください');ScanNFC();">Scan!</button>
 		<br>
 		<p id="plog">ようこそ！</p>
@@ -67,7 +70,7 @@
 					<div id="innerModal" style="margin: 10px;">
 					</div>
 					<br>
-					<button onclick="cameraPause();">読み込む</button>
+					<!-- <button onclick="cameraPause();">読み込む</button> -->
 				</div>
 			</div>
 			<label for="modal-2__close">

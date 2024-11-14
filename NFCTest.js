@@ -26,7 +26,7 @@ const scan = async () => {
         };
 
         // データを読み込んだ
-        reader.addEventListener('reading', readEvent, {once: true})
+        reader.addEventListener('reading', readEvent, { once: true })
     } catch (error) {
         // Scan起動失敗
         //console.error(error)
@@ -81,11 +81,14 @@ async function startCamera() {
     videoElement.srcObject = cameraStream;
     document.getElementById("innerModal").append(videoElement);
     videoElement.addEventListener("resize", () => {
-        videoElement.width = videoElement.videoWidth;
-        videoElement.height = videoElement.videoHeight;
+        const scSmaller = Math.min(window.screen.height, window.screen.width) / 1080;
+        console.log(scSmaller);
+        videoElement.width = videoElement.videoWidth * scSmaller;
+        videoElement.height = videoElement.videoHeight * scSmaller;
     });
 
     cams = cameraStream;
+    cameraCheckStart();
 }
 
 function cameraStop() {
@@ -93,27 +96,41 @@ function cameraStop() {
     cams.getTracks()[0].stop();
 }
 
-async function cameraPause() {
+let cameraChecking;
+
+async function cameraCheckStart() {
     if (!("BarcodeDetector" in window)) {
         alert("Barcode Detector はこのブラウザーでは対応していません。"); return;
     } else {
         console.log("Barcode Detector に対応しています。");
     }
 
-    vid.pause();
     const detector = new BarcodeDetector();
-    const detectionList = await detector.detect(vid);
-    console.log(detectionList);
 
-    if (!confirm(`${detectionList[0].rawValue}でお間違いないですか?`)) {
-        cameraStop();
-        startCamera();
-        return;
-    }
+    cameraChecking = setInterval(async () => {
+        const detectionList = await detector.detect(video);
+
+        for (const detected of detectionList) {
+            if (confirm(`${detected}でお間違いないですか?`)) {
+                //処理
+                CloseModal();
+                return;
+            }
+            else {
+                continue;
+            }
+        }
+    }, 500);
 }
 
 function OpenModal() {
     let open = document.getElementById("modal-2__open");
     open.checked = true;
     startCamera();
+}
+
+function CloseModal() {
+    let open = document.getElementById("modal-2__open");
+    open.checked = false;
+    cameraStop();
 }
