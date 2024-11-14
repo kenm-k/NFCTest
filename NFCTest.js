@@ -111,7 +111,7 @@ async function cameraCheckStart() {
         const detectionList = await detector.detect(vid);
 
         for (const detected of detectionList) {
-            if (confirm(`${detected}でお間違いないですか?`)) {
+            if (confirm(`${detected.rawText}でお間違いないですか?`)) {
                 //処理
                 CloseModal();
                 return;
